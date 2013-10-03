@@ -358,6 +358,13 @@
         _request("GET", repoPath, null, cb);
       };
 
+      // Get commits
+      // --------
+
+      this.commits = function(cb) {
+        _request("GET", repoPath + "/commits", null, cb);
+      };
+
       // Get contents
       // --------
 
