@@ -179,6 +179,12 @@
         "sha": null
       };
 
+      // Get issues
+      // --------
+      
+      this.getIssues = function(cb) {
+        _request("GET", repoPath + "/issues?type=all&per_page=1000", options, cb);
+      };
 
       // Delete a repo
       // --------
