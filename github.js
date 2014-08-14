@@ -100,8 +100,9 @@
       // -------
 
       this.show = function(username, cb) {
-        var command = username ? "/users/"+username : "/user";
-
+        var command = "/users"+username;
+        if (typeof username == 'function') command = "/user", cb = username;
+        
         _request("GET", command, null, function(err, res) {
           cb(err, res);
         });
