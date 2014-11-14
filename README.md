@@ -1,3 +1,13 @@
+WARNING WARNING
+
+we have forked this from the upstream repo because it is lacking certain features for dealing with large numbers of repositories.  This has been updated to make like more tolerable.
+
+	http://github.com/wotio/wot-github
+
+
+====
+
+
 [![browser support](https://ci.testling.com/darvin/github.png)](https://ci.testling.com/darvin/github)
 
 

@@ -131,7 +131,6 @@
         });
       };
 
-	  if (! err && res.length > 0) self.orgRepos(orgna
       // List organization repositories
       // -------
 
@@ -143,6 +142,17 @@
 	  if (! err && res.length > 0) self.orgRepos(orgname,cb,page+1)
         });
       };
+
+	// List the members of an organization:
+	// ------	
+	this.orgMembers = function(orgname, cb, page ) {
+		var self = this
+		page = page? page : 1
+		_request( "GET", "/orgs/" + orgname + "/members?page=" + page, null, function(err,res) {
+			cb(err,res)
+			if (! err && res.length > 0) self.orgMembers(orgname,cb,page+1)
+		})
+	};
 
       // Follow user
       // -------
