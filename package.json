@@ -1,7 +1,7 @@
 {
-  "name": "github",
+  "name": "wot-github",
   "version": "0.7.0",
-  "description": "A higher-level wrapper around the Github API.",
+  "description": "A wot specific higher-level wrapper around the Github API.",
   "main": "github.js",
   "dependencies": {
     "xmlhttprequest": "*",
@@ -23,7 +23,7 @@
     "github",
     "api"
   ],
-  "author": "Sergey Klimov <sergey.v.klimov@gmail.com> (http://darvin.github.com/)",
+  "author": "wotio devs <dev@wot.io>",
   "license": "BSD",
   "readmeFilename": "README.md",
   "gitHead": "aa8aa3c8cd5ce5240373d4fd1d06a7ab4af41a36",

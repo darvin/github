@@ -72,9 +72,12 @@
     // =======
 
     Github.User = function() {
-      this.repos = function(cb) {
-        _request("GET", "/user/repos?type=all&per_page=1000&sort=updated", null, function(err, res) {
+      this.repos = function(cb,page) {
+	var self = this
+	page = page ? page : 1
+        _request("GET", "/user/repos?type=all&per_page=100&page=" + page + "&sort=updated", null, function(err, res) {
           cb(err, res);
+	  if (! err && res.length > 0) self.repos(cb,page+1)
         });
       };
 
@@ -110,9 +113,12 @@
       // List user repositories
       // -------
 
-      this.userRepos = function(username, cb) {
-        _request("GET", "/users/"+username+"/repos?type=all&per_page=1000&sort=updated", null, function(err, res) {
+      this.userRepos = function(username, cb, page) {
+	var self = this
+	page = page ? page : 1
+        _request("GET", "/users/"+username+"/repos?type=all&per_page=100&page=" + page + "&sort=updated", null, function(err, res) {
           cb(err, res);
+	  if (! err && res.length > 0) self.userRepos(username,cb,page+1)
         });
       };
 
@@ -128,11 +134,25 @@
       // List organization repositories
       // -------
 
-      this.orgRepos = function(orgname, cb) {
-        _request("GET", "/orgs/"+orgname+"/repos?type=all&per_page=1000&sort=updated&direction=desc", null, function(err, res) {
+      this.orgRepos = function(orgname, cb, page) {
+	var self = this
+	page = page ? page : 1
+        _request("GET", "/orgs/"+orgname+"/repos?type=all&per_page=100&page=" + page + "&sort=updated&direction=desc", null, function(err, res) {
           cb(err, res);
+	  if (! err && res.length > 0) self.orgRepos(orgname,cb,page+1)
         });
       };
+
+	// List the members of an organization:
+	// ------	
+	this.orgMembers = function(orgname, cb, page ) {
+		var self = this
+		page = page? page : 1
+		_request( "GET", "/orgs/" + orgname + "/members?page=" + page, null, function(err,res) {
+			cb(err,res)
+			if (! err && res.length > 0) self.orgMembers(orgname,cb,page+1)
+		})
+	};
 
       // Follow user
       // -------
